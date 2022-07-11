@@ -14,8 +14,8 @@
     "clean": "rm -rf www/ || true",
     "build": "npm install . && npm run clean && tsc && cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && 7z a -tzip -r Archive.zip . && cd ..",
     "build:bash": "npm install . && npm run clean && tsc && cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk && cp .npmrc www/.npmrc && cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
-    "deploy": "npm run build && eb list && eb use udagram-api-dev && eb deploy",
-    "deploy:bash": "npm run build:bash && eb list && eb use udagram-api-dev && eb deploy",
+    "deploy": "npm run build && eb list && eb use udagram-api-dev && chmod +x bin/setEnv.sh && bin/setEnv.sh && eb deploy",
+    "deploy:bash": "npm run build:bash && eb list && eb use udagram-api-dev && chmod +x bin/setEnv.sh && bin/setEnv.sh && eb deploy",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
